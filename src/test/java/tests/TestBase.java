@@ -17,8 +17,8 @@ public class TestBase {
 
     @Parameters("browser")
     @BeforeSuite
-    public void setUp(String browser) {
-        if (browser == "chrome") {
+    public void setUp(@Optional("chrome")  String browser) {
+        if ("chrome".equalsIgnoreCase(browser)) {
             driver = new ChromeDriver();
         } else {
             driver = new FirefoxDriver();
