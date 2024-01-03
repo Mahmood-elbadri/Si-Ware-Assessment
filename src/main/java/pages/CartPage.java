@@ -10,7 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.security.Security;
 import java.time.Duration;
 
-public class CartPage extends PageBase {
+public class CartPage {
+    private final WebDriver driver;
     @FindBy(xpath = "//*[text()='Cart']")
     private WebElement showCart;
     @FindBy(xpath = "//button[@data-toggle='modal']")
@@ -34,7 +35,7 @@ public class CartPage extends PageBase {
     private WebElement thanksBtn;
 
     public CartPage(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
     }
     public void clickCart(){
         showCart.click();

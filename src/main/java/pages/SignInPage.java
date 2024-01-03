@@ -9,34 +9,26 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class SignInPage extends PageBase {
-    @FindBy(id = "login2")
-    private WebElement startLogInBtn;
-
-    @FindBy(id = "loginusername")
-    private WebElement userNameTxtBox;
-    @FindBy(id = "loginpassword")
-    private WebElement passTxtBox;
-
-    //onclick='logIn()'
-    @FindBy(xpath = "//button[@onclick='logIn()']")
-    private WebElement loginBtn;
-    @FindBy(id = "nameofuser")
-    private WebElement welcomeMsg;
-
+public class SignInPage {
+    private final WebDriver driver;
+    private final By startLogInBtn = By.id("login2");
+    private final By userNameTxtBox = By.id("loginusername");
+    private final By passTxtBox = By.id("loginpassword");
+    private final By loginBtn = By.xpath("//button[@onclick='logIn()']");
+    private final By welcomeMsg = By.id ("nameofuser");
     public SignInPage(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
     }
     public void logInToBlaze(String username,String pass){
-        startLogInBtn.click();
-        userNameTxtBox.sendKeys(username);
-        passTxtBox.sendKeys(pass);
-        loginBtn.click();
+        driver.findElement(startLogInBtn).click();
+        driver.findElement(userNameTxtBox).sendKeys(pass);
+        driver.findElement(passTxtBox).sendKeys(pass);
+        driver.findElement(loginBtn).click();
     }
     public boolean isLogged(){
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id( "nameofuser")));
-        return welcomeMsg.isDisplayed();
+        return (driver.findElement(welcomeMsg).isDisplayed());
     }
 }

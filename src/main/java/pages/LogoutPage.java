@@ -9,12 +9,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LogoutPage extends PageBase{
+public class LogoutPage {
+    private final WebDriver driver;
     //id="logout2"
     @FindBy(xpath = "//a[@id='logout2']")
     private WebElement logOutBtn;
     public LogoutPage(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
     }
 
     //xpath = "//*[text()='Log out']"
